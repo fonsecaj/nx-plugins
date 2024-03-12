@@ -1,0 +1,51 @@
+{
+  "name": "playwright-cucumber",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/playwright-cucumber/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/playwright-cucumber",
+        "main": "packages/playwright-cucumber/src/index.ts",
+        "tsConfig": "packages/playwright-cucumber/tsconfig.lib.json",
+        "assets": [
+          "packages/playwright-cucumber/*.md",
+          {
+            "input": "./packages/playwright-cucumber/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/playwright-cucumber/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/playwright-cucumber",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/playwright-cucumber",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/playwright-cucumber/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
