@@ -1,0 +1,31 @@
+{
+  "name": "example",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "example/src",
+  "projectType": "application",
+  "namedInputs": {
+    "default": ["{projectRoot}/src/**/*", "{projectRoot}/playwright.config.ts"]
+  },
+  "targets": {
+    "build": {
+      "inputs": ["default"],
+      "dependsOn": ["^build"],
+      "executor": "@nx-plugins/playwright-cucumber:build",
+      "options": {
+        "featuresDir": "example/src/features",
+        "stepsDir": "example/src/steps",
+        "testsDir": "example/src/tests"
+      }
+    },
+    "e2e": {
+      "inputs": ["default"],
+      "dependsOn": ["build"],
+      "executor": "@nx/playwright:playwright",
+      "options": {
+        "config": "example/playwright.config.ts"
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": []
+}

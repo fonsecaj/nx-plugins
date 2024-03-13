@@ -4,6 +4,22 @@
   "title": "Build executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "stepsDir": {
+      "type": "string",
+      "default": "steps",
+      "description": "Relative path to steps"
+    },
+    "featuresDir": {
+      "type": "string",
+      "default": "features",
+      "description": "Relative path to features"
+    },
+    "testsDir": {
+      "type": "string",
+      "default": "tests",
+      "description": "Relative path to tests"
+    }
+  },
   "required": []
 }
